@@ -47,7 +47,7 @@
             this.EmailTextBox = new System.Windows.Forms.TextBox();
             this.PhoneTextBox = new System.Windows.Forms.MaskedTextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.ClassesButton = new System.Windows.Forms.Button();
+            this.AddClassesButton = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.SubmitButton = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
@@ -61,6 +61,7 @@
             this.LoginButtonGroupBox = new System.Windows.Forms.GroupBox();
             this.LoginButton = new System.Windows.Forms.Button();
             this.UserButtonGroupBox = new System.Windows.Forms.GroupBox();
+            this.DropClassesButton = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.PersonalInfoGroupBox.SuspendLayout();
@@ -266,15 +267,16 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Visible = false;
             // 
-            // ClassesButton
+            // AddClassesButton
             // 
-            this.ClassesButton.Location = new System.Drawing.Point(20, 17);
-            this.ClassesButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.ClassesButton.Name = "ClassesButton";
-            this.ClassesButton.Size = new System.Drawing.Size(89, 29);
-            this.ClassesButton.TabIndex = 21;
-            this.ClassesButton.Text = "Classes";
-            this.ClassesButton.UseVisualStyleBackColor = true;
+            this.AddClassesButton.Location = new System.Drawing.Point(71, 15);
+            this.AddClassesButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AddClassesButton.Name = "AddClassesButton";
+            this.AddClassesButton.Size = new System.Drawing.Size(50, 41);
+            this.AddClassesButton.TabIndex = 21;
+            this.AddClassesButton.Text = "Add Classes";
+            this.AddClassesButton.UseVisualStyleBackColor = true;
+            this.AddClassesButton.Click += new System.EventHandler(this.ClassesButton_Click);
             // 
             // button3
             // 
@@ -285,6 +287,7 @@
             this.button3.TabIndex = 22;
             this.button3.Text = "Exit";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // SubmitButton
             // 
@@ -407,7 +410,8 @@
             // 
             // UserButtonGroupBox
             // 
-            this.UserButtonGroupBox.Controls.Add(this.ClassesButton);
+            this.UserButtonGroupBox.Controls.Add(this.DropClassesButton);
+            this.UserButtonGroupBox.Controls.Add(this.AddClassesButton);
             this.UserButtonGroupBox.Controls.Add(this.LoginButton);
             this.UserButtonGroupBox.Location = new System.Drawing.Point(9, 400);
             this.UserButtonGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -416,6 +420,17 @@
             this.UserButtonGroupBox.Size = new System.Drawing.Size(247, 59);
             this.UserButtonGroupBox.TabIndex = 25;
             this.UserButtonGroupBox.TabStop = false;
+            // 
+            // DropClassesButton
+            // 
+            this.DropClassesButton.Location = new System.Drawing.Point(4, 17);
+            this.DropClassesButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DropClassesButton.Name = "DropClassesButton";
+            this.DropClassesButton.Size = new System.Drawing.Size(52, 38);
+            this.DropClassesButton.TabIndex = 28;
+            this.DropClassesButton.Text = "Drop Classes";
+            this.DropClassesButton.UseVisualStyleBackColor = true;
+            this.DropClassesButton.Click += new System.EventHandler(this.DropClassesButton_Click);
             // 
             // openFileDialog1
             // 
@@ -468,7 +483,7 @@
         private System.Windows.Forms.TextBox EmailTextBox;
         private System.Windows.Forms.MaskedTextBox PhoneTextBox;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button ClassesButton;
+        private System.Windows.Forms.Button AddClassesButton;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button SubmitButton;
         private System.Windows.Forms.Button ClearButton;
@@ -484,6 +499,7 @@
         private System.Windows.Forms.GroupBox UserButtonGroupBox;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button DropClassesButton;
     }
 }
 

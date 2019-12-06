@@ -46,6 +46,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminForm.Designer.cs">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClassesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClassesForm.Designer.cs">
+      <DependentUpon>ClassesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CSharpDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CSharpDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Username and Password.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Username and Password.Designer.cs">
+      <DependentUpon>Username and Password.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewUserEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +83,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AdminForm.resx">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClassesForm.resx">
+      <DependentUpon>ClassesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NewUserEditForm.resx">
       <DependentUpon>NewUserEditForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -72,6 +101,20 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Username and Password.resx">
+      <DependentUpon>Username and Password.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="CSharpDataSet.xsc">
+      <DependentUpon>CSharpDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CSharpDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CSharpDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CSharpDataSet.xss">
+      <DependentUpon>CSharpDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

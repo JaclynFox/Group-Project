@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Security.Cryptography;
+using System.Data.SqlClient;
 
 namespace Group_Project
 {
@@ -17,50 +18,68 @@ namespace Group_Project
         public NewUserEditForm()
         {
             InitializeComponent();
+            /*SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\CSharp.mdf;Integrated Security=True;Connect Timeout=30");
+            SqlCommand com = new SqlCommand("SELECT ")
+            StateDropBox.Items =
+            TODO Add state pull up info.*/
         }
 
         private void UploadFilesButton_Click(object sender, EventArgs e)
         {
 
         }
-
         /*Upon clicking the submit button the system will write a new user and password to Users.txt using the first and last name as the user and the email as the password.
          * This is just placeholder for testing until the database is implemented.*/
         private void SubmitButton_Click(object sender, EventArgs e)
         {
-            if (FirstNameTextBox.Text != "" && LastNameTextBox.Text != "" && EmailTextBox.Text != "")
+            SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\CSharp.mdf;Integrated Security=True;Connect Timeout=30");
+            SqlCommand com = new SqlCommand("INSERT INTO Users(UserKey, UserName, Password, FirstName, LastName, address, street, city, zip, email, phone, YOE) VALUES(@username, @username, @password, @fn, @ln, @address, @street, @city, @zip, @email, @phone, @yoe)", con);
+            com.Parameters.AddWithValue("@fn", FirstNameTextBox.Text);
+            com.Parameters.AddWithValue("@ln", LastNameTextBox.Text);
+            com.Parameters.AddWithValue("@street", StreetTextBox.Text);
+            com.Parameters.AddWithValue("@city", CityTextBox.Text);
+            com.Parameters.AddWithValue("@zip", ZipTextBox.Text);
+            com.Parameters.AddWithValue("@email", EmailTextBox.Text);
+            com.Parameters.AddWithValue("@phone", PhoneTextBox.Text);
+            com.Parameters.AddWithValue("@address", StreetTextBox.Text);
+            com.Parameters.AddWithValue("@yoe", Int32.Parse(YearsExperienceDropBox.SelectedItem.ToString()));
+            //Pulls up a form where the user can ACTUALL ENTER A USERNAME! PROGRESS!!!!!!
+            using (var login = new UNPW())
             {
-                using (StreamWriter sw = File.AppendText("Users.txt"))
+                var result = login.ShowDialog();
+                if (result == DialogResult.OK)
                 {
-                    byte[] salt = new byte[64];
-                    new RNGCryptoServiceProvider().GetBytes(salt);
-                    var user = new Rfc2898DeriveBytes((FirstNameTextBox.Text + LastNameTextBox.Text), salt, 10000);
-                    byte[] hash = user.GetBytes(64);
-                    user.Dispose();
-                    byte[] hashbytes = new byte[128];
-                    Array.Copy(salt, 0, hashbytes, 0, 64);
-                    Array.Copy(hash, 0, hashbytes, 64, 64);
-                    String userhash = Convert.ToBase64String(hashbytes);
-                    sw.WriteLine(userhash);
-                    byte[] pepper = new byte[64];
-                    new RNGCryptoServiceProvider().GetBytes(pepper);
-                    var password = new Rfc2898DeriveBytes(EmailTextBox.Text, pepper, 10000);
-                    byte[] passhash = password.GetBytes(64);
-                    byte[] passhashbytes = new byte[128];
-                    Array.Copy(pepper, 0, passhashbytes, 0, 64);
-                    Array.Copy(passhash, 0, passhashbytes, 64, 64);
-                    String passhashstring = Convert.ToBase64String(passhashbytes);
-                    sw.WriteLine(passhashstring);
-                    password.Dispose();
+                    com.Parameters.AddWithValue("@username", login.un);
+                    com.Parameters.AddWithValue("@password", login.pw);
+                    con.Open();
+                    com.ExecuteNonQuery();
+                    con.Close();
+                    MessageBox.Show("Inserted");
                 }
-                MessageBox.Show("User Created successfully");
-                this.Hide();
-                var login = new LoginForm();
-                login.Closed += (s, args) => this.Close();
-                login.Show();
             }
-            else
-                MessageBox.Show("Enter first name, last name, and email.");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ClassesButton_Click(object sender, EventArgs e)
+        {
+            //NEEDS TO ADD THE USER TO THE 'none' OF THE OBJECT
+            this.Hide();
+            var classesForm = new ClassesForm(2, "none", "new");
+            classesForm.Closed += (s, args) => this.Close();
+            classesForm.Show();
+        }
+
+        private void DropClassesButton_Click(object sender, EventArgs e)
+        {
+            //NEEDS TO ADD THE USER TO THE 'none' OF THE OBJECT
+            this.Hide();
+            var classesForm = new ClassesForm(1, "none", "new");
+            classesForm.Closed += (s, args) => this.Close();
+            classesForm.Show();
         }
     }
 }
