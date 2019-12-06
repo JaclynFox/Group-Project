@@ -29,6 +29,7 @@ namespace Group_Project
             SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\CSharp.mdf;Integrated Security=True;Connect Timeout=30");
             DataTable table = new DataTable();
             Boolean[] boo = new Boolean[2];
+            con.Open();
             using (SqlDataAdapter da = new SqlDataAdapter("SELECT UserName, Password FROM Users", con))
                 da.Fill(table);
             con.Close();
@@ -46,13 +47,12 @@ namespace Group_Project
                     byte[] userhash = userthing.GetBytes(64);
                     userthing.Dispose();
                     boo[0] = true;
-                    for (int ii = 0; ii < 64; ii++)
-                        if (userbyte[ii + 64] != userhash[ii])
-                            boo[0] = false;
+                for (int ii = 0; ii < 64; ii++)
+                    if (userbyte[ii + 64] != userhash[ii])
+                        boo[0] = false;
                     //Password check
                     if (boo[0] == true)
                     {
-                        MessageBox.Show("Username Found");
                         byte[] salt = new byte[64];
                         byte[] hashbyte = table.Rows[i].Field<byte[]>("Password");
                         Array.Copy(hashbyte, 0, salt, 0, 64);
@@ -94,7 +94,21 @@ namespace Group_Project
                 if (valid == true)
                     break;
             }
-            return valid;
+            if (valid == true)
+                return false;
+            else
+                return true;
+        }
+        public static byte[] GetBytes(String i)
+        {
+            byte[] salt = new byte[64];
+            var passthing = new Rfc2898DeriveBytes(i, salt, 10000);
+            byte[] hash = passthing.GetBytes(64);
+            passthing.Dispose();
+            byte[] returnthis = new byte[128];
+            Array.Copy(salt, 0, returnthis, 0, 64);
+            Array.Copy(hash, 0, returnthis, 64, 64);
+            return returnthis;
         }
     }
 }
