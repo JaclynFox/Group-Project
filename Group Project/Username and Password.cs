@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace Group_Project
     
     public partial class UNPW : Form
     {
+        public string UserNameForForm;
         public String un;
         public String pw;
         public UNPW()
@@ -23,8 +25,29 @@ namespace Group_Project
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
+            int validated = 0;
+            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\CSharp.mdf;Integrated Security=True;Connect Timeout=30";
 
-            if (Program.UserUnique(UserNameTextBox.Text))
+
+            using (SqlConnection UserC = new SqlConnection())
+            {
+                UserC.ConnectionString = connectionString;
+                UserC.Open();
+                SqlCommand SelcectAllUsers = new SqlCommand("SELECT * FROM Users;", UserC);
+
+                using (SqlDataReader myReader = SelcectAllUsers.ExecuteReader())
+                {
+                    while (myReader.Read())
+                    {
+                        if (myReader[1].ToString() == UserNameTextBox.Text)
+                        {
+                            validated++;
+                        }
+                    }
+                }
+            }
+            
+            if (validated == 0)      //if (Program.UserUnique(UserNameTextBox.Text))
             {
                 Boolean answer = TestPassword(PasswordTextBox.Text);
                 if (TestPassword(PasswordTextBox.Text)) {
@@ -34,7 +57,7 @@ namespace Group_Project
                     this.Close();
                 }
                 else
-                    MessageBox.Show(answer.ToString() + " The password has to contain a capital letter, a lower case letter, " +
+                    MessageBox.Show(" The password has to contain a capital letter, a lower case letter, " +
                         "a special character, a number and at least 8 characters in length.");
             }
             else
