@@ -185,7 +185,7 @@ namespace Group_Project
                 using (SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\CSharp.mdf;Integrated Security=True;Connect Timeout=30"))
                 {
                     con.Open();
-                    using (SqlDataAdapter da = new SqlDataAdapter("SELECT UserName FROM Users WHERE FirstName ='" + UsersListBox.SelectedItem.ToString().Substring(0, space) + "' AND LastName = '" + UsersListBox.SelectedItem.ToString().Substring(space+1) + "'", con))
+                    using (SqlDataAdapter da = new SqlDataAdapter("SELECT UserName FROM Users WHERE FirstName ='" + UsersListBox.SelectedItem.ToString().Substring(0, space) + "' AND LastName = '" + UsersListBox.SelectedItem.ToString().Substring(space + 1) + "'", con))
                         da.Fill(table);
                     con.Close();
                 }
