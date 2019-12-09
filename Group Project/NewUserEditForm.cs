@@ -332,6 +332,7 @@ namespace Group_Project
             }
 
             //This populates the YearsExperienceDropBox from 1 - 60
+            YearsExperienceDropBox.Items.Clear();
             for (int i = 1; i <= 60; i++)
             {
                 YearsExperienceDropBox.Items.Add(i);
@@ -416,7 +417,13 @@ namespace Group_Project
                 }
                 StateDropBox.SelectedIndex = 51 - table.Rows[0].Field<int>("StateKey");
                 StatusDropBox.SelectedIndex = table.Rows[0].Field<int>("StatusKey")-1;
-                YearsExperienceDropBox.SelectedIndex = table.Rows[0].Field<int>("YOE")-1;
+                int greatest = 0;
+                foreach (int i in YearsExperienceDropBox.Items)
+                    if (i > greatest)
+                    {
+                        greatest = i;
+                        YearsExperienceDropBox.SelectedIndex = YearsExperienceDropBox.Items.IndexOf(i);
+                    }
                 EducationDropBox.SelectedIndex = table.Rows[0].Field<int>("EducationKey")-1;
             }
 
