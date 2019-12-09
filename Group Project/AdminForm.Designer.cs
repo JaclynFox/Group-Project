@@ -248,6 +248,7 @@
             this.Controls.Add(this.UserButtonsGroupBox);
             this.Name = "AdminForm";
             this.Text = "AdminForm";
+            this.Load += new System.EventHandler(this.AdminForm_Load);
             this.UserButtonsGroupBox.ResumeLayout(false);
             this.ExitEditGroupBox.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);

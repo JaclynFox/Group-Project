@@ -46,6 +46,13 @@
             this.DropGroup = new System.Windows.Forms.GroupBox();
             this.DropSubmitButton = new System.Windows.Forms.Button();
             this.DropExitButton = new System.Windows.Forms.Button();
+            this.AdminClassGroupBox = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.CreateButton = new System.Windows.Forms.Button();
+            this.TeacherComboBox = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.ClassTextBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.FirstGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SecondGroupBox.SuspendLayout();
@@ -53,6 +60,7 @@
             this.groupBox2.SuspendLayout();
             this.AddGroup.SuspendLayout();
             this.DropGroup.SuspendLayout();
+            this.AdminClassGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // FirstListBox
@@ -228,6 +236,7 @@
             this.DropSubmitButton.TabIndex = 15;
             this.DropSubmitButton.Text = "Drop";
             this.DropSubmitButton.UseVisualStyleBackColor = true;
+            this.DropSubmitButton.Click += new System.EventHandler(this.DropSubmitButton_Click);
             // 
             // DropExitButton
             // 
@@ -239,11 +248,78 @@
             this.DropExitButton.UseVisualStyleBackColor = true;
             this.DropExitButton.Click += new System.EventHandler(this.DropExitButton_Click);
             // 
+            // AdminClassGroupBox
+            // 
+            this.AdminClassGroupBox.Controls.Add(this.button1);
+            this.AdminClassGroupBox.Controls.Add(this.CreateButton);
+            this.AdminClassGroupBox.Controls.Add(this.TeacherComboBox);
+            this.AdminClassGroupBox.Controls.Add(this.label5);
+            this.AdminClassGroupBox.Controls.Add(this.ClassTextBox);
+            this.AdminClassGroupBox.Controls.Add(this.label4);
+            this.AdminClassGroupBox.Location = new System.Drawing.Point(53, 648);
+            this.AdminClassGroupBox.Name = "AdminClassGroupBox";
+            this.AdminClassGroupBox.Size = new System.Drawing.Size(399, 144);
+            this.AdminClassGroupBox.TabIndex = 19;
+            this.AdminClassGroupBox.TabStop = false;
+            this.AdminClassGroupBox.Text = "Add a New Class";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(170, 101);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Exit";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // CreateButton
+            // 
+            this.CreateButton.Location = new System.Drawing.Point(274, 101);
+            this.CreateButton.Name = "CreateButton";
+            this.CreateButton.Size = new System.Drawing.Size(75, 23);
+            this.CreateButton.TabIndex = 5;
+            this.CreateButton.Text = "Create Class";
+            this.CreateButton.UseVisualStyleBackColor = true;
+            // 
+            // TeacherComboBox
+            // 
+            this.TeacherComboBox.FormattingEnabled = true;
+            this.TeacherComboBox.Location = new System.Drawing.Point(115, 60);
+            this.TeacherComboBox.Name = "TeacherComboBox";
+            this.TeacherComboBox.Size = new System.Drawing.Size(121, 24);
+            this.TeacherComboBox.TabIndex = 3;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(13, 63);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(69, 17);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Professor";
+            // 
+            // ClassTextBox
+            // 
+            this.ClassTextBox.Location = new System.Drawing.Point(115, 29);
+            this.ClassTextBox.Name = "ClassTextBox";
+            this.ClassTextBox.Size = new System.Drawing.Size(221, 22);
+            this.ClassTextBox.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 29);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(83, 17);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Class Name";
+            // 
             // ClassesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(537, 660);
+            this.ClientSize = new System.Drawing.Size(537, 794);
+            this.Controls.Add(this.AdminClassGroupBox);
             this.Controls.Add(this.DropGroup);
             this.Controls.Add(this.AddGroup);
             this.Controls.Add(this.groupBox2);
@@ -259,6 +335,8 @@
             this.groupBox2.ResumeLayout(false);
             this.AddGroup.ResumeLayout(false);
             this.DropGroup.ResumeLayout(false);
+            this.AdminClassGroupBox.ResumeLayout(false);
+            this.AdminClassGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -283,5 +361,12 @@
         private System.Windows.Forms.GroupBox DropGroup;
         private System.Windows.Forms.Button DropSubmitButton;
         private System.Windows.Forms.Button DropExitButton;
+        private System.Windows.Forms.GroupBox AdminClassGroupBox;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button CreateButton;
+        private System.Windows.Forms.ComboBox TeacherComboBox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox ClassTextBox;
+        private System.Windows.Forms.Label label4;
     }
 }

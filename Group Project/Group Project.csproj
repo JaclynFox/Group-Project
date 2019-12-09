@@ -109,6 +109,9 @@
     <EmbeddedResource Include="ClassesForm.resx">
       <DependentUpon>ClassesForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NewUserEditForm.resx">
       <DependentUpon>NewUserEditForm.cs</DependentUpon>
     </EmbeddedResource>
