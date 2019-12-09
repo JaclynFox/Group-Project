@@ -400,9 +400,25 @@ namespace Group_Project
                     }
                 }
             }
-            foreach (GroupBox gb in this.Controls.OfType<GroupBox>())
-                foreach (ComboBox cb in gb.Controls.OfType<ComboBox>())
-                    cb.SelectedIndex = 0;
+            if (UserNameForForm == null)
+                foreach (GroupBox gb in this.Controls.OfType<GroupBox>())
+                    foreach (ComboBox cb in gb.Controls.OfType<ComboBox>())
+                        cb.SelectedIndex = 0;
+            else
+            {
+                DataTable table = new DataTable();
+                using (SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\CSharp.mdf;Integrated Security=True;Connect Timeout=30"))
+                {
+                    con.Open();
+                    using (SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Users WHERE UserName = '" + UserNameForForm + "'", con))
+                        da.Fill(table);
+                    con.Close();
+                }
+                StateDropBox.SelectedIndex = 51 - table.Rows[0].Field<int>("StateKey");
+                StatusDropBox.SelectedIndex = table.Rows[0].Field<int>("StatusKey")-1;
+                YearsExperienceDropBox.SelectedIndex = table.Rows[0].Field<int>("YOE")-1;
+                EducationDropBox.SelectedIndex = table.Rows[0].Field<int>("EducationKey")-1;
+            }
 
 
         }
@@ -470,6 +486,29 @@ namespace Group_Project
                 var result = open.ShowDialog();
                 if (result == DialogResult.OK)
                     filePath = open.FileName;
+            }
+        }
+
+        private void LoginButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var login = new LoginForm();
+            login.UserNameForForm = null;
+            login.statusOfCurrent = null;
+            login.Closed += (s, args) => this.Close();
+            login.Show();
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            foreach (GroupBox gb in Controls.OfType<GroupBox>())
+            {
+                foreach (TextBox txt in gb.Controls.OfType<TextBox>())
+                    txt.Text = "";
+                foreach (MaskedTextBox mtxt in gb.Controls.OfType<MaskedTextBox>())
+                    mtxt.Text = "";
+                foreach (ComboBox cb in gb.Controls.OfType<ComboBox>())
+                    cb.SelectedIndex = 0;
             }
         }
     }

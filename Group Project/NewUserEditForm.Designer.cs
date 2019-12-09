@@ -335,6 +335,7 @@
             this.ClearButton.TabIndex = 24;
             this.ClearButton.Text = "Clear";
             this.ClearButton.UseVisualStyleBackColor = true;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // ProfessorInfoGroupBox
             // 
@@ -437,6 +438,7 @@
             this.LoginButton.TabIndex = 27;
             this.LoginButton.Text = "Logout";
             this.LoginButton.UseVisualStyleBackColor = true;
+            this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
             // 
             // UserButtonGroupBox
             // 
